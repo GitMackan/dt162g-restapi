@@ -5,6 +5,8 @@ const app = express();
 const cors = require('cors');
 require('dotenv/config');
 
+var PORT = process.env.PORT || 3000;
+
 // Middlewares
 app.all('/*', function(req, res, next) {
 	res.header("Access-Control-Allow-Origin", "*");
@@ -29,4 +31,4 @@ mongoose.connect(process.env.DB_CONNECTION, () => {
     console.log('Connected to DB!');
 });
 
-app.listen(3000);
+app.listen(PORT);
