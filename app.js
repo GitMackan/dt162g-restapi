@@ -3,9 +3,15 @@ const express = require('express');
 const mongoose = require('mongoose');
 const app = express();
 const cors = require('cors');
+const Course = require('../models/Course');
 require('dotenv/config');
 
 let PORT = process.env.PORT || 3000;
+
+router.use(express.json());
+router.use(express.urlencoded({
+    extended: true
+}));
 
 // Middlewares
 app.all('/*', function(req, res, next) {
@@ -17,13 +23,12 @@ app.all('/*', function(req, res, next) {
 
 app.get('/', (req, res, next) => {
 
-    res.status(200).json({
-        status: 'success',
-        data: {
-            name: 'name of your app',
-            version: '0.1.0'
-        }
-    });
+    try{
+        const courses = await Course.find();
+        res.json(courses);
+    }catch(err) {
+        res.json({ message: err });
+    }
 
 });
 
