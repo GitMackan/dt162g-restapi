@@ -5,7 +5,7 @@ const app = express();
 const cors = require('cors');
 require('dotenv/config');
 
-var PORT = process.env.PORT || 3000;
+let PORT = process.env.PORT || 3000;
 
 // Middlewares
 app.all('/*', function(req, res, next) {
@@ -13,6 +13,18 @@ app.all('/*', function(req, res, next) {
 	res.header("Access-Control-Allow-Headers", "X-Requested-With");
 	res.header("Access-Control-Allow-Methods", "GET,PUT,PATCH,POST,DELETE");
 	next();
+});
+
+app.get('/', (req, res, next) => {
+
+    res.status(200).json({
+        status: 'success',
+        data: {
+            name: 'name of your app',
+            version: '0.1.0'
+        }
+    });
+
 });
 
 app.use(cors());
