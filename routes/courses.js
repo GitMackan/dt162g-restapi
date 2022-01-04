@@ -9,6 +9,7 @@ router.use(express.urlencoded({
 
 // Hämta alla kurser från databasen
 router.get('/', async (req, res) => {
+    res.send('Hej');
     try{
         const courses = await Course.find();
         res.json(courses);

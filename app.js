@@ -39,7 +39,7 @@ const coursesRoutes = require('./routes/courses.js');
 app.use('/courses', coursesRoutes);
 
 // Anslut till Databas
-mongoose.connect(process.env.DB_CONNECTION, () => {
+mongoose.connect(process.env.DB_CONNECTION || process.env.DB_CONNECTION, () => {
     console.log('Connected to DB!');
 });
 
