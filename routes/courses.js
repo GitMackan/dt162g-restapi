@@ -13,10 +13,10 @@ router.get('/', async (req, res) => {
     try{
         const courses = await Course.find();
         res.json(courses);
-        console.log("Kom hit")
+        res.send("Kom hit")
     }catch(err) {
         res.json({ message: err });
-        console.log("Ajdå, kom hit..")
+        res.send("Ajdå, kom hit..")
     }
 });
 
