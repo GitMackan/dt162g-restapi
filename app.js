@@ -3,7 +3,6 @@ const express = require('express');
 const mongoose = require('mongoose');
 const app = express();
 const cors = require('cors');
-const Course = require('../models/Course');
 require('dotenv/config');
 
 let PORT = process.env.PORT || 5000;
@@ -25,15 +24,6 @@ app.get('/', (req, res, next) => {
             version: '0.1.0'
         }
     });
-});
-
-router.get('/courses', async (req, res) => {
-    try{
-        const courses = await Course.find();
-        res.json(courses);
-    }catch(err) {
-        res.json({ message: err });
-    }
 });
 
 
