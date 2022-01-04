@@ -34,7 +34,7 @@ app.use(express.urlencoded({
 }));
 
 // Import routes
-const coursesRoutes = require('./routes/courses.js');
+const coursesRoutes = require('.app/routes/courses.js');
 
 app.use('/courses', coursesRoutes);
 
