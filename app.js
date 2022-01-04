@@ -35,8 +35,10 @@ app.use(express.urlencoded({
 
 // Import routes
 const coursesRoutes = require('./routes/courses.js');
+const moviesRoutes = require('./routes/movies.js');
 
 app.use('/courses', coursesRoutes);
+app.use('/movies', moviesRoutes)
 
 // Anslut till Databas
 mongoose.connect(process.env.MONGODB_URI || process.env.DB_CONNECTION, () => {
