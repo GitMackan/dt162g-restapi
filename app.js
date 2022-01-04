@@ -5,7 +5,7 @@ const app = express();
 const cors = require('cors');
 require('dotenv/config');
 
-let PORT = process.env.PORT || 3000;
+let PORT = process.env.PORT || 5000;
 
 // Middlewares
 app.all('/*', function(req, res, next) {
@@ -20,7 +20,7 @@ app.get('/', (req, res, next) => {
     res.status(200).json({
         status: 'success',
         data: {
-            name: 'name of your app',
+            name: 'Marcus App',
             version: '0.1.0'
         }
     });
