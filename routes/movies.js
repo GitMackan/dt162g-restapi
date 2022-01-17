@@ -1,6 +1,5 @@
 const express = require('express')
 const router = express.Router();
-
 const Movie = require('../models/Movie');
 
 router.use(express.json());
@@ -8,7 +7,7 @@ router.use(express.urlencoded({
     extended: true
 }));
 
-// Hämta alla kurser från databasen
+// Hämta alla filmer från databasen
 router.get('/', async (req, res) => {
     try{
         const movies = await Movie.find();
@@ -18,7 +17,17 @@ router.get('/', async (req, res) => {
     }
 });
 
-// Lägg till kurs till databasen
+// Hämta en specifik film från database
+router.get('/:id', async (req, res) => {
+    try {
+        const movie = await Movie.findById(req.params.id)
+        res.json(movie);
+    } catch (err) {
+        res.json({ message: err });
+    }
+});
+
+// Lägg till film till databasen
 router.post('/', (req, res) => {
     const movie = new Movie({
         title: req.body.title,
@@ -35,27 +44,17 @@ router.post('/', (req, res) => {
     }
 });
 
-// Hämta en specifik kurs från database
-router.get('/:id', async (req, res) => {
-    try {
-        const movie = await Movie.findById(req.params.id)
-        res.json(movie);
-    } catch (err) {
-        res.json({ message: err });
-    }
-});
-
-// Radera en kurs från databas
+// Radera en film från databas
 router.delete('/:id', async (req, res) => {
     try {
         const deletedMovie = await Movie.deleteOne({_id: req.params.id})
-        res.send("Kurs borttagen!");
+        res.send("Film borttagen!");
     } catch (err) {
         res.json({ message: err })
     }
 })
 
-// Uppdatera en kurs i databasen
+// Uppdatera en film i databasen
 router.patch('/:id', async (req, res) => {
     try {
         const updatedMovie = await Movie.updateOne(

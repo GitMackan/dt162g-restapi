@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 
+// Schema för movies
 const MovieSchema = mongoose.Schema({
     title: {
         type: String,

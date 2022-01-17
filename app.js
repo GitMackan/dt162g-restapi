@@ -17,15 +17,8 @@ app.all('/*', function(req, res, next) {
 
 app.get('/', (req, res, next) => {
 
-    res.status(200).json({
-        status: 'success',
-        data: {
-            name: 'Marcus App',
-            version: '0.1.0'
-        }
-    });
+    res.send('Api DT162G - Projekt')
 });
-
 
 app.use(cors());
 app.use(express.json());
@@ -34,15 +27,14 @@ app.use(express.urlencoded({
 }));
 
 // Import routes
-const coursesRoutes = require('./routes/courses.js');
 const moviesRoutes = require('./routes/movies.js');
 
-app.use('/courses', coursesRoutes);
 app.use('/movies', moviesRoutes)
 
 // Anslut till Databas
 mongoose.connect(process.env.MONGODB_URI || process.env.DB_CONNECTION, () => {
     console.log('Connected to DB!');
 });
+
 
 app.listen(PORT);
